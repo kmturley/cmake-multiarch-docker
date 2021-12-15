@@ -85,17 +85,18 @@ services:
     volumes:
       - .:/app
 
-  # riscv64:
-  #   build:
-  #     context: .
-  #     args:
-  #       ARCH: riscv64
-  #   command: >
-  #     sh -c "cmake -S ./src -B ./build-riscv64 &&
-  #            cmake --build ./build-riscv64 &&
-  #           ./build-riscv64/Tutorial 4294967296"
-  #   volumes:
-  #     - .:/app
+  riscv64:
+    build:
+      context: .
+      args:
+        ARCH: riscv64
+        TAG: sid-slim
+    command: >
+      sh -c "cmake -S ./src -B ./build-riscv64 &&
+             cmake --build ./build-riscv64 &&
+            ./build-riscv64/Tutorial 4294967296"
+    volumes:
+      - .:/app
 
   s390x:
     build:

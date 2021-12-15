@@ -38,6 +38,7 @@ Verify binary architectures using the file command:
     file ./build-i386/Tutorial
     file ./build-mips64le/Tutorial
     file ./build-ppc64le/Tutorial
+    file ./build-riscv64/Tutorial
     file ./build-s390x/Tutorial
 
 Run debug commands inside Docker containers:
@@ -49,6 +50,7 @@ Run debug commands inside Docker containers:
     docker-compose run i386 cmake --version
     docker-compose run mips64le cmake --version
     docker-compose run ppc64le cmake --version
+    docker-compose run riscv64 cmake --version
     docker-compose run s390x cmake --version
 
 
