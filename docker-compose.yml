@@ -1,111 +1,41 @@
 version: '3'
 services:
 
-  amd64:
+  x86_64-linux-gnu:
     build:
       context: .
-      args:
-        ARCH: amd64
+    environment:
+      CROSS_TRIPLE: x86_64-linux-gnu
     command: >
-      sh -c "cmake -S ./src -B ./build-amd64 &&
-             cmake --build ./build-amd64 &&
-            ./build-amd64/Tutorial 4294967296"
+      sh -c "cmake -S ./src -B ./build/$${CROSS_TRIPLE} &&
+             cmake --build ./build/$${CROSS_TRIPLE} &&
+            ./build/$${CROSS_TRIPLE}/Tutorial 4294967296"
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./build:/app/build
 
-  arm32v5:
+  x86_64-apple-darwin:
     build:
       context: .
-      args:
-        ARCH: arm32v5
+    environment:
+      CROSS_TRIPLE: x86_64-apple-darwin
     command: >
-      sh -c "cmake -S ./src -B ./build-arm32v5 &&
-             cmake --build ./build-arm32v5 &&
-            ./build-arm32v5/Tutorial 4294967296"
+      sh -c "cmake -S ./src -B ./build/$${CROSS_TRIPLE} &&
+             cmake --build ./build/$${CROSS_TRIPLE} &&
+            ./build/$${CROSS_TRIPLE}/Tutorial 4294967296"
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./build:/app/build
 
-  arm32v7:
+  x86_64-w64-mingw32:
     build:
       context: .
-      args:
-        ARCH: arm32v7
+    environment:
+      CROSS_TRIPLE: x86_64-w64-mingw32
     command: >
-      sh -c "cmake -S ./src -B ./build-arm32v7 &&
-             cmake --build ./build-arm32v7 &&
-            ./build-arm32v7/Tutorial 4294967296"
+      sh -c "cmake -S ./src -B ./build/$${CROSS_TRIPLE} &&
+             cmake --build ./build/$${CROSS_TRIPLE} &&
+            ./build/$${CROSS_TRIPLE}/Tutorial 4294967296"
     volumes:
-      - .:/app
-
-  arm64v8:
-    build:
-      context: .
-      args:
-        ARCH: arm64v8
-    command: >
-      sh -c "cmake -S ./src -B ./build-arm64v8 &&
-             cmake --build ./build-arm64v8 &&
-            ./build-arm64v8/Tutorial 4294967296"
-    volumes:
-      - .:/app
-
-  i386:
-    build:
-      context: .
-      args:
-        ARCH: i386
-    command: >
-      sh -c "cmake -S ./src -B ./build-i386 &&
-             cmake --build ./build-i386 &&
-            ./build-i386/Tutorial 4294967296"
-    volumes:
-      - .:/app
-
-  mips64le:
-    build:
-      context: .
-      args:
-        ARCH: mips64le
-    command: >
-      sh -c "cmake -S ./src -B ./build-mips64le &&
-             cmake --build ./build-mips64le &&
-            ./build-mips64le/Tutorial 4294967296"
-    volumes:
-      - .:/app
-
-  ppc64le:
-    build:
-      context: .
-      args:
-        ARCH: ppc64le
-    command: >
-      sh -c "cmake -S ./src -B ./build-ppc64le &&
-             cmake --build ./build-ppc64le &&
-            ./build-ppc64le/Tutorial 4294967296"
-    volumes:
-      - .:/app
-
-  riscv64:
-    build:
-      context: .
-      args:
-        ARCH: riscv64
-        TAG: sid-slim
-    command: >
-      sh -c "cmake -S ./src -B ./build-riscv64 &&
-             cmake --build ./build-riscv64 &&
-            ./build-riscv64/Tutorial 4294967296"
-    volumes:
-      - .:/app
-
-  s390x:
-    build:
-      context: .
-      args:
-        ARCH: s390x
-    command: >
-      sh -c "cmake -S ./src -B ./build-s390x &&
-             cmake --build ./build-s390x &&
-            ./build-s390x/Tutorial 4294967296"
-    volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./build:/app/build

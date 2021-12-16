@@ -31,27 +31,15 @@ Then run the compiler using:
 
 Verify binary architectures using the file command:
 
-    file ./build-amd64/Tutorial
-    file ./build-arm32v5/Tutorial
-    file ./build-arm32v7/Tutorial
-    file ./build-arm64v8/Tutorial
-    file ./build-i386/Tutorial
-    file ./build-mips64le/Tutorial
-    file ./build-ppc64le/Tutorial
-    file ./build-riscv64/Tutorial
-    file ./build-s390x/Tutorial
+    file ./build/x86_64-apple-darwin14/Tutorial
+    file ./build/x86_64-linux-gnu/Tutorial
+    file ./build/x86_64-w64-mingw32/Tutorial
 
 Run debug commands inside Docker containers:
 
-    docker-compose run amd64 cmake --version
-    docker-compose run arm32v5 cmake --version
-    docker-compose run arm32v7 cmake --version
-    docker-compose run arm64v8 cmake --version
-    docker-compose run i386 cmake --version
-    docker-compose run mips64le cmake --version
-    docker-compose run ppc64le cmake --version
-    docker-compose run riscv64 cmake --version
-    docker-compose run s390x cmake --version
+    docker-compose run x86_64-apple-darwin cmake --version
+    docker-compose run x86_64-linux-gnu cmake --version
+    docker-compose run x86_64-w64-mingw32 cmake --version
 
 
 ## Documentation
