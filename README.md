@@ -31,15 +31,15 @@ Then run the compiler using:
 
 Verify binary architectures using the file command:
 
-    file ./build-amd64/Tutorial
-    file ./build-arm32v5/Tutorial
-    file ./build-arm32v7/Tutorial
-    file ./build-arm64v8/Tutorial
-    file ./build-i386/Tutorial
-    file ./build-mips64le/Tutorial
-    file ./build-ppc64le/Tutorial
-    file ./build-riscv64/Tutorial
-    file ./build-s390x/Tutorial
+    file ./build/amd64-debian/Tutorial
+    file ./build/arm32v5-debian/Tutorial
+    file ./build/arm32v7-debian/Tutorial
+    file ./build/arm64v8-debian/Tutorial
+    file ./build/i386-debian/Tutorial
+    file ./build/mips64le-debian/Tutorial
+    file ./build/ppc64le-debian/Tutorial
+    file ./build/riscv64-debian/Tutorial
+    file ./build/s390x-debian/Tutorial
 
 Run debug commands inside Docker containers:
 

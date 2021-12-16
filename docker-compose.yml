@@ -6,106 +6,133 @@ services:
       context: .
       args:
         ARCH: amd64
+    environment:
+      FOLDER: amd64-debian
     command: >
-      sh -c "cmake -S ./src -B ./build-amd64 &&
-             cmake --build ./build-amd64 &&
-            ./build-amd64/Tutorial 4294967296"
+      sh -c "cmake -S ./src -B ./build/$${FOLDER} &&
+             cmake --build ./build/$${FOLDER} &&
+            ./build/$${FOLDER}/Tutorial 4294967296"
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./build:/app/build
 
   arm32v5:
     build:
       context: .
       args:
         ARCH: arm32v5
+    environment:
+      FOLDER: arm32v5-debian
     command: >
-      sh -c "cmake -S ./src -B ./build-arm32v5 &&
-             cmake --build ./build-arm32v5 &&
-            ./build-arm32v5/Tutorial 4294967296"
+      sh -c "cmake -S ./src -B ./build/$${FOLDER} &&
+             cmake --build ./build/$${FOLDER} &&
+            ./build/$${FOLDER}/Tutorial 4294967296"
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./build:/app/build
 
   arm32v7:
     build:
       context: .
       args:
         ARCH: arm32v7
+    environment:
+      FOLDER: arm32v7-debian
     command: >
-      sh -c "cmake -S ./src -B ./build-arm32v7 &&
-             cmake --build ./build-arm32v7 &&
-            ./build-arm32v7/Tutorial 4294967296"
+      sh -c "cmake -S ./src -B ./build/$${FOLDER} &&
+             cmake --build ./build/$${FOLDER} &&
+            ./build/$${FOLDER}/Tutorial 4294967296"
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./build:/app/build
 
   arm64v8:
     build:
       context: .
       args:
         ARCH: arm64v8
+    environment:
+      FOLDER: arm64v8-debian
     command: >
-      sh -c "cmake -S ./src -B ./build-arm64v8 &&
-             cmake --build ./build-arm64v8 &&
-            ./build-arm64v8/Tutorial 4294967296"
+      sh -c "cmake -S ./src -B ./build/$${FOLDER} &&
+             cmake --build ./build/$${FOLDER} &&
+            ./build/$${FOLDER}/Tutorial 4294967296"
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./build:/app/build
 
   i386:
     build:
       context: .
       args:
         ARCH: i386
+    environment:
+      FOLDER: i386-debian
     command: >
-      sh -c "cmake -S ./src -B ./build-i386 &&
-             cmake --build ./build-i386 &&
-            ./build-i386/Tutorial 4294967296"
+      sh -c "cmake -S ./src -B ./build/$${FOLDER} &&
+             cmake --build ./build/$${FOLDER} &&
+            ./build/$${FOLDER}/Tutorial 4294967296"
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./build:/app/build
 
   mips64le:
     build:
       context: .
       args:
         ARCH: mips64le
+    environment:
+      FOLDER: mips64le-debian
     command: >
-      sh -c "cmake -S ./src -B ./build-mips64le &&
-             cmake --build ./build-mips64le &&
-            ./build-mips64le/Tutorial 4294967296"
+      sh -c "cmake -S ./src -B ./build/$${FOLDER} &&
+             cmake --build ./build/$${FOLDER} &&
+            ./build/$${FOLDER}/Tutorial 4294967296"
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./build:/app/build
 
   ppc64le:
     build:
       context: .
       args:
         ARCH: ppc64le
+    environment:
+      FOLDER: ppc64le-debian
     command: >
-      sh -c "cmake -S ./src -B ./build-ppc64le &&
-             cmake --build ./build-ppc64le &&
-            ./build-ppc64le/Tutorial 4294967296"
+      sh -c "cmake -S ./src -B ./build/$${FOLDER} &&
+             cmake --build ./build/$${FOLDER} &&
+            ./build/$${FOLDER}/Tutorial 4294967296"
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./build:/app/build
 
   riscv64:
     build:
       context: .
       args:
         ARCH: riscv64
-        TAG: sid-slim
+        OS: debian:sid-slim
+    environment:
+      FOLDER: riscv64-debian
     command: >
-      sh -c "cmake -S ./src -B ./build-riscv64 &&
-             cmake --build ./build-riscv64 &&
-            ./build-riscv64/Tutorial 4294967296"
+      sh -c "cmake -S ./src -B ./build/$${FOLDER} &&
+             cmake --build ./build/$${FOLDER} &&
+            ./build/$${FOLDER}/Tutorial 4294967296"
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./build:/app/build
 
   s390x:
     build:
       context: .
       args:
         ARCH: s390x
+    environment:
+      FOLDER: s390x-debian
     command: >
-      sh -c "cmake -S ./src -B ./build-s390x &&
-             cmake --build ./build-s390x &&
-            ./build-s390x/Tutorial 4294967296"
+      sh -c "cmake -S ./src -B ./build/$${FOLDER} &&
+             cmake --build ./build/$${FOLDER} &&
+            ./build/$${FOLDER}/Tutorial 4294967296"
     volumes:
-      - .:/app
+      - ./src:/app/src
+      - ./build:/app/build

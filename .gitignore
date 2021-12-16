@@ -1,10 +1,2 @@
 .DS_Store
-build-amd64
-build-arm32v5
-build-arm32v7
-build-arm64v8
-build-i386
-build-mips64le
-build-ppc64le
-build-riscv64
-build-s390x
+build

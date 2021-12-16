@@ -1,10 +1,10 @@
 ARG ARCH=amd64
-ARG TAG=11-slim
-FROM ${ARCH}/debian:${TAG}
+ARG OS=debian:11-slim
+FROM ${ARCH}/${OS}
 
 WORKDIR /app
 COPY ./src /app/src
 
 RUN apt-get update && apt-get install build-essential cmake -y
 
-CMD ["cmake --version"]
+RUN cmake --version
