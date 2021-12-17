@@ -15,7 +15,7 @@ services:
       - ./src:/app/src
       - ./build:/app/build
 
-  macx:
+  mac:
     build:
       context: .
     environment:
