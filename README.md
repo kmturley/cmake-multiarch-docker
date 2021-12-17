@@ -31,27 +31,27 @@ Then run the compiler using:
 
 Verify binary architectures using the file command:
 
-    file ./build/amd64-debian/Tutorial
-    file ./build/arm32v5-debian/Tutorial
-    file ./build/arm32v7-debian/Tutorial
-    file ./build/arm64v8-debian/Tutorial
-    file ./build/i386-debian/Tutorial
-    file ./build/mips64le-debian/Tutorial
-    file ./build/ppc64le-debian/Tutorial
-    file ./build/riscv64-debian/Tutorial
-    file ./build/s390x-debian/Tutorial
+    file ./build/linux-amd64/Tutorial
+    file ./build/linux-arm32v5/Tutorial
+    file ./build/linux-arm32v7/Tutorial
+    file ./build/linux-arm64v8/Tutorial
+    file ./build/linux-i386/Tutorial
+    file ./build/linux-mips64le/Tutorial
+    file ./build/linux-ppc64le/Tutorial
+    file ./build/linux-riscv64/Tutorial
+    file ./build/linux-s390x/Tutorial
 
 Run debug commands inside Docker containers:
 
-    docker-compose run amd64 cmake --version
-    docker-compose run arm32v5 cmake --version
-    docker-compose run arm32v7 cmake --version
-    docker-compose run arm64v8 cmake --version
-    docker-compose run i386 cmake --version
-    docker-compose run mips64le cmake --version
-    docker-compose run ppc64le cmake --version
-    docker-compose run riscv64 cmake --version
-    docker-compose run s390x cmake --version
+    docker-compose run linux-amd64 cmake --version
+    docker-compose run linux-arm32v5 cmake --version
+    docker-compose run linux-arm32v7 cmake --version
+    docker-compose run linux-arm64v8 cmake --version
+    docker-compose run linux-i386 cmake --version
+    docker-compose run linux-mips64le cmake --version
+    docker-compose run linux-ppc64le cmake --version
+    docker-compose run linux-riscv64 cmake --version
+    docker-compose run linux-s390x cmake --version
 
 
 ## Documentation
