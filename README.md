@@ -31,15 +31,15 @@ Then run the compiler using:
 
 Verify binary architectures using the file command:
 
-    file ./build/x86_64-apple-darwin14/Tutorial
-    file ./build/x86_64-linux-gnu/Tutorial
-    file ./build/x86_64-w64-mingw32/Tutorial
+    file ./build/linux/Tutorial
+    file ./build/mac/Tutorial
+    file ./build/win/Tutorial
 
 Run debug commands inside Docker containers:
 
-    docker-compose run x86_64-apple-darwin cmake --version
-    docker-compose run x86_64-linux-gnu cmake --version
-    docker-compose run x86_64-w64-mingw32 cmake --version
+    docker-compose run linux cmake --version
+    docker-compose run mac cmake --version
+    docker-compose run win cmake --version
 
 
 ## Documentation
