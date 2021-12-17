@@ -1,6 +1,8 @@
-FROM kmturley/crossbuild
+ARG ARCH=dockcross
+ARG OS=windows-shared-x64
+FROM ${ARCH}/${OS}
 
 WORKDIR /app
 COPY ./src /app/src
 
-RUN crossbuild cmake --version
+RUN cmake --version
