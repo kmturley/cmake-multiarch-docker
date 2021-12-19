@@ -7,7 +7,7 @@ services:
       CROSS_TRIPLE: x86_64-linux-gnu
       FOLDER: linux
     command: >
-      sh -c "mkdir ./build/linux &&
+      sh -c "mkdir -p ./build/linux &&
              cd ./build/linux &&
              cmake ../../src &&
              cmake --build . &&
@@ -22,7 +22,7 @@ services:
     environment:
       CROSS_TRIPLE: x86_64-apple-darwin
     command: >
-      sh -c "mkdir ./build/mac &&
+      sh -c "mkdir -p ./build/mac &&
              cd ./build/mac &&
              cmake ../../src &&
              cmake --build . &&
@@ -38,7 +38,7 @@ services:
       CROSS_TRIPLE: x86_64-w64-mingw32
       FOLDER: win
     command: >
-      sh -c "mkdir ./build/win &&
+      sh -c "mkdir -p ./build/win &&
              cd ./build/win &&
              cmake ../../src &&
              cmake --build . &&
