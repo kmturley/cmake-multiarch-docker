@@ -33,7 +33,7 @@ Verify binary architectures using the file command:
 
     file ./build/linux/Tutorial
     file ./build/mac/Tutorial
-    file ./build/win/Tutorial
+    file ./build/win/Tutorial.exe
 
 Run debug commands inside Docker containers:
 
