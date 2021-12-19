@@ -1,6 +1,5 @@
 
 #include "MathFunctions.h"
-
 #include <cmath>
 
 #ifdef USE_MYMATH

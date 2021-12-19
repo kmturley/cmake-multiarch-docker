@@ -2,43 +2,48 @@ version: '3'
 services:
 
   linux:
-    image: kmturley/crossbuild
+    image: multiarch/crossbuild
     environment:
       CROSS_TRIPLE: x86_64-linux-gnu
       FOLDER: linux
-    working_dir: /app
     command: >
-      sh -c "cmake --debug-output -DUSE_MYMATH=0 -S ./src -B ./build/$${FOLDER} &&
-             cmake --debug-output --build ./build/$${FOLDER} &&
-            ./build/$${FOLDER}/Tutorial 4294967296"
+      sh -c "mkdir ./build/linux &&
+             cd ./build/linux &&
+             cmake ../../src &&
+             cmake --build . &&
+            ./Tutorial 4294967296"
+    working_dir: /app
     volumes:
       - ./src:/app/src
       - ./build:/app/build
 
   mac:
-    image: kmturley/crossbuild
+    image: multiarch/crossbuild
     environment:
       CROSS_TRIPLE: x86_64-apple-darwin
-      FOLDER: mac
-    working_dir: /app
     command: >
-      sh -c "cmake --debug-output -DUSE_MYMATH=0 -S ./src -B ./build/$${FOLDER} &&
-             cmake --debug-output --build ./build/$${FOLDER} &&
-            ./build/$${FOLDER}/Tutorial 4294967296"
+      sh -c "mkdir ./build/mac &&
+             cd ./build/mac &&
+             cmake ../../src &&
+             cmake --build . &&
+            ./Tutorial 4294967296"
+    working_dir: /app
     volumes:
       - ./src:/app/src
       - ./build:/app/build
 
   win:
-    image: kmturley/crossbuild
+    image: multiarch/crossbuild
     environment:
       CROSS_TRIPLE: x86_64-w64-mingw32
       FOLDER: win
-    working_dir: /app
     command: >
-      sh -c "cmake --debug-output -DUSE_MYMATH=0 -S ./src -B ./build/$${FOLDER} &&
-             cmake --debug-output --build ./build/$${FOLDER} &&
-            ./build/$${FOLDER}/Tutorial.exe 4294967296"
+      sh -c "mkdir ./build/win &&
+             cd ./build/win &&
+             cmake ../../src &&
+             cmake --build . &&
+            ./Tutorial 4294967296"
+    working_dir: /app
     volumes:
       - ./src:/app/src
       - ./build:/app/build

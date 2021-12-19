@@ -13,11 +13,14 @@ target_include_directories(MathFunctions
 option(USE_MYMATH "Use tutorial provided math implementation" ON)
 if(USE_MYMATH)
 
-  target_compile_definitions(MathFunctions PRIVATE "USE_MYMATH")
+  # does this system provide the log and exp functions?
+  include(CheckSymbolExists)
+  set(CMAKE_REQUIRED_LIBRARIES "m")
+  check_symbol_exists(log "math.h" HAVE_LOG)
+  check_symbol_exists(exp "math.h" HAVE_EXP)
 
   # first we add the executable that generates the table
   add_executable(MakeTable MakeTable.cxx)
-  target_link_libraries(MakeTable PRIVATE tutorial_compiler_flags)
 
   # add the command to generate the source code
   add_custom_command(
@@ -37,16 +40,18 @@ if(USE_MYMATH)
                              ${CMAKE_CURRENT_BINARY_DIR}
                              )
 
-  # state that SqrtLibrary need PIC when the default is shared libraries
   set_target_properties(SqrtLibrary PROPERTIES
                         POSITION_INDEPENDENT_CODE ${BUILD_SHARED_LIBS}
                         )
 
-  target_link_libraries(SqrtLibrary PUBLIC tutorial_compiler_flags)
+  target_compile_definitions(SqrtLibrary PRIVATE
+                             "$<$<BOOL:${HAVE_LOG}>:HAVE_LOG>"
+                             "$<$<BOOL:${HAVE_EXP}>:HAVE_EXP>"
+                             )
   target_link_libraries(MathFunctions PRIVATE SqrtLibrary)
 endif()
 
-target_link_libraries(MathFunctions PUBLIC tutorial_compiler_flags)
+target_compile_definitions(MathFunctions PRIVATE "$<$<BOOL:${USE_MYMATH}>:USE_MYMATH>")
 
 # define the symbol stating we are using the declspec(dllexport) when
 # building on windows
@@ -57,11 +62,7 @@ set_property(TARGET MathFunctions PROPERTY VERSION "1.0.0")
 set_property(TARGET MathFunctions PROPERTY SOVERSION "1")
 
 # install rules
-set(installable_libs MathFunctions tutorial_compiler_flags)
-if(TARGET SqrtLibrary)
-  list(APPEND installable_libs SqrtLibrary)
-endif()
-install(TARGETS ${installable_libs}
+install(TARGETS MathFunctions
         DESTINATION lib
         EXPORT MathFunctionsTargets)
 install(FILES MathFunctions.h DESTINATION include)
