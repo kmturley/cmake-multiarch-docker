@@ -24,7 +24,7 @@ services:
     command: >
       sh -c "mkdir -p ./build/mac &&
              cd ./build/mac &&
-             cmake ../../src &&
+             cmake -DCMAKE_LINKER=/usr/x86_64-apple-darwin14/bin/ld -DCMAKE_CXX_COMPILER=/usr/osxcross/bin/../bin/o64-clang++ -DCMAKE_C_COMPILER=/usr/osxcross/bin/../bin/o64-clang -DCMAKE_OSX_SYSROOT=/usr/osxcross/SDK/MacOSX10.10.sdk -DCMAKE_NM=/usr/x86_64-apple-darwin14/bin/nm -DCMAKE_OBJDUMP=/usr/bin/objdump -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10 -DCMAKE_STRIP=/usr/x86_64-apple-darwin14/bin/strip -DCMAKE_CXX_COMPILER-ADVANCED=1 -DCMAKE_INSTALL_NAME_TOOL-ADVANCED=1 -DCMAKE_C_COMPILER-ADVANCED=1 ../../src &&
              cmake --build . &&
             ./Tutorial 4294967296"
     working_dir: /app
@@ -42,7 +42,7 @@ services:
              cd ./build/win &&
              cmake ../../src &&
              cmake --build . &&
-            ./Tutorial 4294967296"
+            ./Tutorial.exe 4294967296"
     working_dir: /app
     volumes:
       - ./src:/app/src
