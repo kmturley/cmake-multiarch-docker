@@ -2,48 +2,40 @@ version: '3'
 services:
 
   linux:
-    image: multiarch/crossbuild
+    image: kmturley/crossbuild
     environment:
       CROSS_TRIPLE: x86_64-linux-gnu
-      FOLDER: linux
-    command: >
-      sh -c "mkdir -p ./build/linux &&
-             cd ./build/linux &&
-             cmake ../../src &&
-             cmake --build . &&
-            ./Tutorial 4294967296"
     working_dir: /app
+    command: >
+      sh -c "cmake -DUSE_MYMATH=0 -S ./src -B ./build/linux &&
+             cmake --build ./build/linux &&
+            file ./build/linux/Tutorial"
     volumes:
       - ./src:/app/src
       - ./build:/app/build
 
   mac:
-    image: multiarch/crossbuild
+    image: kmturley/crossbuild
     environment:
       CROSS_TRIPLE: x86_64-apple-darwin
-    command: >
-      sh -c "mkdir -p ./build/mac &&
-             cd ./build/mac &&
-             cmake -DCMAKE_LINKER=/usr/x86_64-apple-darwin14/bin/ld -DCMAKE_CXX_COMPILER=/usr/osxcross/bin/../bin/o64-clang++ -DCMAKE_C_COMPILER=/usr/osxcross/bin/../bin/o64-clang -DCMAKE_OSX_SYSROOT=/usr/osxcross/SDK/MacOSX10.10.sdk -DCMAKE_NM=/usr/x86_64-apple-darwin14/bin/nm -DCMAKE_OBJDUMP=/usr/bin/objdump -DCMAKE_OSX_DEPLOYMENT_TARGET=10.10 -DCMAKE_STRIP=/usr/x86_64-apple-darwin14/bin/strip -DCMAKE_CXX_COMPILER-ADVANCED=1 -DCMAKE_INSTALL_NAME_TOOL-ADVANCED=1 -DCMAKE_C_COMPILER-ADVANCED=1 ../../src &&
-             cmake --build . &&
-            ./Tutorial 4294967296"
     working_dir: /app
+    command: >
+      sh -c "cmake -DUSE_MYMATH=0 -S ./src -B ./build/mac &&
+             cmake --build ./build/mac &&
+            file ./build/mac/Tutorial"
     volumes:
       - ./src:/app/src
       - ./build:/app/build
 
   win:
-    image: multiarch/crossbuild
+    image: kmturley/crossbuild
     environment:
       CROSS_TRIPLE: x86_64-w64-mingw32
-      FOLDER: win
-    command: >
-      sh -c "mkdir -p ./build/win &&
-             cd ./build/win &&
-             cmake ../../src &&
-             cmake --build . &&
-            ./Tutorial.exe 4294967296"
     working_dir: /app
+    command: >
+      sh -c "cmake -DUSE_MYMATH=0 -S ./src -B ./build/win &&
+             cmake --build ./build/win &&
+            file ./build/win/Tutorial.exe"
     volumes:
       - ./src:/app/src
       - ./build:/app/build
